@@ -2,7 +2,7 @@
   "name": "quintessence",
   "private": true,
   "version": "1.0.0",
-  "license": "MIT",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "description": "5 kinetic material concepts. 6 fluid wave dynamics. A WebGL surface that only awakens with touch and pointer velocity.",
   "type": "module",
   "scripts": {

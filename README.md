@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-WebGL2-black?style=flat-square&logo=three.js&logoColor=white)](https://threejs.org/)
 [![GLSL](https://img.shields.io/badge/GLSL-Custom_Shaders-5586A4?style=flat-square&logo=opengl&logoColor=white)](https://www.khronos.org/opengl/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/License-Noncommercial_1.0-orange?style=flat-square)](LICENSE)
 
 ---
 
@@ -114,4 +114,9 @@ The optimized production bundle will be generated in the `dist/` directory.
 
 ## License
 
-MIT © 2026. Built with Vite, TypeScript, Three.js, and Custom GLSL Shaders.
+**PolyForm Noncommercial License 1.0.0** © 2026 Ivan Louie.
+
+- ✅ **Permitted**: You are free to view, fork, run, modify, study, and create personal/educational non-commercial projects.
+- 🚫 **Restricted**: Commercial use, monetized distribution, or integration into paid products/services is strictly prohibited.
+
+See [`LICENSE`](LICENSE) for complete terms.
