@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' stroke='%23333' stroke-width='4' fill='none'/><circle cx='50' cy='50' r='22' stroke='%23888' stroke-width='2' fill='none'/><circle cx='50' cy='50' r='6' fill='%23111'/></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>QUINTESSENCE — Kinetic Fluid & Optical Laboratory</title>
+    
+    <!-- Google Fonts for Luxury & Technical Horology Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="theme-aetheris">
+    <div id="app">
+      <!-- WebGL Canvas Container -->
+      <canvas id="gl-canvas"></canvas>
+
+      <!-- Centerpiece & UI Overlays -->
+      <div id="overlay-container">
+        <!-- Top Navigation -->
+        <header class="header-nav">
+          <div class="brand-sub">
+            <span id="brand-tag">EXPERIMENT 01 // AETHERIS</span>
+          </div>
+
+          <!-- Concept Switcher Bar (Top Center) -->
+          <nav class="concept-nav" aria-label="Concept Selector">
+            <button class="concept-tab active" data-concept="aetheris" title="Aetheris — Luminiferous Platinum">
+              <span class="tab-key">1</span>
+              <span class="tab-name">AETHERIS</span>
+            </button>
+            <button class="concept-tab" data-concept="velox" title="Velox — Kinetic Titanium Chrono">
+              <span class="tab-key">2</span>
+              <span class="tab-name">VELOX</span>
+            </button>
+            <button class="concept-tab" data-concept="opaline" title="Opaline — Guilloché & Honey Gold">
+              <span class="tab-key">3</span>
+              <span class="tab-name">OPALINE</span>
+            </button>
+            <button class="concept-tab" data-concept="thalassa" title="Thalassa — Abyssal Marine & Bioluminescence">
+              <span class="tab-key">4</span>
+              <span class="tab-name">THALASSA</span>
+            </button>
+            <button class="concept-tab" data-concept="kinesis" title="Kinesis — Pure Synesthesia & Mercury">
+              <span class="tab-key">5</span>
+              <span class="tab-name">KINESIS</span>
+            </button>
+          </nav>
+
+          <div class="nav-actions">
+            <button id="sound-btn" class="nav-btn" title="Toggle Fluid Acoustics (Press S)" aria-label="Toggle Sound">
+              <span class="sound-dot"></span>
+              <span class="btn-label">ACOUSTICS</span>
+            </button>
+            <button id="controls-btn" class="nav-btn pill-btn" title="Shader Parameters (Press C)">
+              <span>CONTROLS</span>
+            </button>
+            <button id="portfolio-btn" class="nav-btn pill-btn" title="Concept Manifestos (Press M)">
+              <span>MANIFESTO</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Main Centerpiece -->
+        <main class="hero-centerpiece">
+          <!-- Dynamic Centerpiece Dials Container -->
+          <div id="dial-container" class="watch-silhouette">
+            
+            <!-- 1. AETHERIS DIAL (Astrolabe & Celestial Coordinates) -->
+            <svg id="dial-aetheris" class="dial-svg active" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="250" cy="250" r="236" stroke="currentColor" stroke-opacity="0.12" stroke-width="1.5" stroke-dasharray="4 6"/>
+              <circle cx="250" cy="250" r="204" stroke="currentColor" stroke-opacity="0.20" stroke-width="1"/>
+              <circle cx="250" cy="250" r="168" stroke="currentColor" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="1 5"/>
+              
+              <!-- 12 Astrolabe Rays -->
+              <g class="dial-indices" stroke="currentColor" stroke-opacity="0.30" stroke-width="1">
+                <line x1="250" y1="46" x2="250" y2="66" stroke-width="2" stroke-opacity="0.5"/>
+                <line x1="352" y1="73" x2="342" y2="90"/>
+                <line x1="427" y1="148" x2="410" y2="158"/>
+                <line x1="454" y1="250" x2="434" y2="250" stroke-width="2" stroke-opacity="0.5"/>
+                <line x1="427" y1="352" x2="410" y2="342"/>
+                <line x1="352" y1="427" x2="342" y2="410"/>
+                <line x1="250" y1="454" x2="250" y2="434" stroke-width="2" stroke-opacity="0.5"/>
+                <line x1="148" y1="427" x2="158" y2="410"/>
+                <line x1="73" y1="352" x2="90" y2="342"/>
+                <line x1="46" y1="250" x2="66" y2="250" stroke-width="2" stroke-opacity="0.5"/>
+                <line x1="73" y1="148" x2="90" y2="158"/>
+                <line x1="148" y1="73" x2="158" y2="90"/>
+              </g>
+
+              <!-- Rotating Astrolabe Tourbillon Assembly -->
+              <g class="tourbillon-anim" style="transform-origin: 250px 310px;">
+                <circle cx="250" cy="310" r="54" stroke="currentColor" stroke-opacity="0.22" stroke-width="1.2"/>
+                <circle cx="250" cy="310" r="42" stroke="currentColor" stroke-opacity="0.18" stroke-width="1" stroke-dasharray="3 3"/>
+                <circle cx="250" cy="310" r="16" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5"/>
+                <path d="M 250 268 L 250 352" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.2"/>
+                <path d="M 208 310 L 292 310" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.2"/>
+                <circle cx="250" cy="310" r="4" fill="currentColor" fill-opacity="0.4"/>
+              </g>
+
+              <circle cx="250" cy="250" r="3" fill="currentColor" fill-opacity="0.4"/>
+            </svg>
+
+            <!-- 2. VELOX DIAL (Flyback Chronograph & Tachymeter) -->
+            <svg id="dial-velox" class="dial-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="250" cy="250" r="238" stroke="currentColor" stroke-opacity="0.18" stroke-width="2"/>
+              <circle cx="250" cy="250" r="215" stroke="currentColor" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="2 4"/>
+              
+              <!-- Tachymeter Scale Indices -->
+              <g stroke="currentColor" stroke-opacity="0.35" stroke-width="1.2">
+                <line x1="250" y1="35" x2="250" y2="52" stroke-width="2.5"/>
+                <line x1="357" y1="64" x2="348" y2="79"/>
+                <line x1="436" y1="143" x2="421" y2="152"/>
+                <line x1="465" y1="250" x2="448" y2="250" stroke-width="2.5"/>
+                <line x1="436" y1="357" x2="421" y2="348"/>
+                <line x1="357" y1="436" x2="348" y2="421"/>
+                <line x1="250" y1="465" x2="250" y2="448" stroke-width="2.5"/>
+                <line x1="143" y1="436" x2="152" y2="421"/>
+                <line x1="64" y1="357" x2="79" y2="348"/>
+                <line x1="35" y1="250" x2="52" y2="250" stroke-width="2.5"/>
+                <line x1="64" y1="143" x2="79" y2="152"/>
+                <line x1="143" y1="64" x2="152" y2="79"/>
+              </g>
+
+              <!-- Dual Chronograph Subdials -->
+              <g stroke="currentColor" stroke-opacity="0.25" stroke-width="1">
+                <circle cx="170" cy="250" r="48"/>
+                <circle cx="330" cy="250" r="48"/>
+                <line x1="170" y1="206" x2="170" y2="216" stroke-width="1.5"/>
+                <line x1="330" y1="206" x2="330" y2="216" stroke-width="1.5"/>
+                <circle cx="170" cy="250" r="3" fill="currentColor" fill-opacity="0.5"/>
+                <circle cx="330" cy="250" r="3" fill="currentColor" fill-opacity="0.5"/>
+              </g>
+            </svg>
+
+            <!-- 3. OPALINE DIAL (Perpetual Guilloché Wave Rosette) -->
+            <svg id="dial-opaline" class="dial-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="250" cy="250" r="238" stroke="currentColor" stroke-opacity="0.22" stroke-width="1.5"/>
+              <circle cx="250" cy="250" r="225" stroke="currentColor" stroke-opacity="0.14" stroke-width="0.8" stroke-dasharray="1 3"/>
+              
+              <!-- Guilloché Rosette Concentric Petals -->
+              <g stroke="currentColor" stroke-opacity="0.14" stroke-width="0.75">
+                <circle cx="250" cy="250" r="195"/>
+                <circle cx="250" cy="250" r="175"/>
+                <circle cx="250" cy="250" r="155"/>
+                <circle cx="250" cy="250" r="135"/>
+                <circle cx="250" cy="250" r="115"/>
+                <circle cx="250" cy="250" r="95"/>
+                <circle cx="250" cy="250" r="75"/>
+                <circle cx="250" cy="250" r="55"/>
+                
+                <path d="M 120 250 Q 250 120 380 250 Q 250 380 120 250 Z"/>
+                <path d="M 250 120 Q 380 250 250 380 Q 120 250 250 120 Z"/>
+                <path d="M 158 158 Q 342 158 342 342 Q 158 342 158 158 Z"/>
+              </g>
+
+              <circle cx="250" cy="250" r="4" fill="currentColor" fill-opacity="0.5"/>
+            </svg>
+
+            <!-- 4. THALASSA DIAL (1000M Abyssal Depth Contours & Marine Rose) -->
+            <svg id="dial-thalassa" class="dial-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="250" cy="250" r="240" stroke="currentColor" stroke-opacity="0.25" stroke-width="2"/>
+              <circle cx="250" cy="250" r="222" stroke="currentColor" stroke-opacity="0.15" stroke-width="1.2"/>
+              <circle cx="250" cy="250" r="200" stroke="currentColor" stroke-opacity="0.1" stroke-width="1" stroke-dasharray="6 6"/>
+
+              <!-- Submarine Compass Rose Coordinates -->
+              <g stroke="currentColor" stroke-opacity="0.25" stroke-width="1">
+                <line x1="250" y1="20" x2="250" y2="480" stroke-opacity="0.1"/>
+                <line x1="20" y1="250" x2="480" y2="250" stroke-opacity="0.1"/>
+                <polygon points="250,55 244,75 256,75" fill="currentColor" fill-opacity="0.4"/>
+                <polygon points="445,250 425,244 425,256" fill="currentColor" fill-opacity="0.4"/>
+                <polygon points="250,445 244,425 256,425" fill="currentColor" fill-opacity="0.4"/>
+                <polygon points="55,250 75,244 75,256" fill="currentColor" fill-opacity="0.4"/>
+              </g>
+
+              <circle cx="250" cy="250" r="140" stroke="currentColor" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="3 7"/>
+              <circle cx="250" cy="250" r="85" stroke="currentColor" stroke-opacity="0.2" stroke-width="1"/>
+              <circle cx="250" cy="250" r="4" fill="currentColor" fill-opacity="0.5"/>
+            </svg>
+
+            <!-- 5. KINESIS DIAL (Pure Harmonic Synesthesia Wavelengths) -->
+            <svg id="dial-kinesis" class="dial-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="250" cy="250" r="240" stroke="currentColor" stroke-opacity="0.15" stroke-width="1"/>
+              <circle cx="250" cy="250" r="200" stroke="currentColor" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="1 8"/>
+              <circle cx="250" cy="250" r="160" stroke="currentColor" stroke-opacity="0.18" stroke-width="1"/>
+              <circle cx="250" cy="250" r="120" stroke="currentColor" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="1 8"/>
+              <circle cx="250" cy="250" r="80" stroke="currentColor" stroke-opacity="0.2" stroke-width="1"/>
+              <circle cx="250" cy="250" r="40" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.5"/>
+
+              <line x1="250" y1="210" x2="250" y2="290" stroke="currentColor" stroke-opacity="0.3" stroke-width="1"/>
+              <line x1="210" y1="250" x2="290" y2="250" stroke="currentColor" stroke-opacity="0.3" stroke-width="1"/>
+              <circle cx="250" cy="250" r="5" fill="currentColor" fill-opacity="0.5"/>
+            </svg>
+          </div>
+
+          <!-- Dynamic Text Framing Over Canvas -->
+          <div class="content-wrapper">
+            <div id="brand-sub-header" class="sub-header tracking-widest">LUMINIFEROUS RESONANCE</div>
+            <h1 id="brand-main-title" class="main-title">AETHERIS</h1>
+            <div id="brand-tagline" class="tagline">Celestial Astrolabe Tourbillon</div>
+            <div class="interaction-hint">
+              <span class="hint-dot"></span>
+              <span id="brand-hint-text" class="hint-text">Sweep across the celestial vacuum to illuminate the photonic spectrum</span>
+            </div>
+          </div>
+        </main>
+
+        <!-- Velocity & Iridescence HUD Indicator (Bottom Left) -->
+        <div class="hud-metrics">
+          <div class="metric-item">
+            <span class="metric-label">VELOCITY</span>
+            <div class="metric-bar-bg">
+              <div id="velocity-bar" class="metric-bar-fill"></div>
+            </div>
+            <span id="velocity-val" class="metric-value">0.00</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">DISPERSION</span>
+            <div class="metric-bar-bg">
+              <div id="dispersion-bar" class="metric-bar-fill spectral"></div>
+            </div>
+            <span id="dispersion-val" class="metric-value">0%</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">DYNAMICS</span>
+            <span id="hud-ripple-label" class="metric-value mode-badge">HYDRO</span>
+          </div>
+        </div>
+
+        <!-- Floating Ripple Dynamics Control Capsule (Docked at Bottom Center) -->
+        <div class="bottom-dock-wrapper">
+          <div class="bottom-ripple-dock" role="toolbar" aria-label="Fluid Ripple Dynamics Mode">
+            <span class="dock-prefix">DYNAMICS</span>
+            <button class="ripple-tab active" data-ripple="classic" title="Hydrodynamic Fluid Wave PDE">
+              <span class="ripple-code">01</span>
+              <span class="ripple-label">HYDRO</span>
+            </button>
+            <button class="ripple-tab" data-ripple="harmonic" title="Harmonic Echo Rings (Bessel Shockwaves)">
+              <span class="ripple-code">02</span>
+              <span class="ripple-label">ECHO</span>
+            </button>
+            <button class="ripple-tab" data-ripple="mercury" title="Viscous Liquid Mercury (Surface Tension)">
+              <span class="ripple-code">03</span>
+              <span class="ripple-label">MERCURY</span>
+            </button>
+            <button class="ripple-tab" data-ripple="capillary" title="Capillary Shimmer (Microscopic Ripples)">
+              <span class="ripple-code">04</span>
+              <span class="ripple-label">SHIMMER</span>
+            </button>
+            <button class="ripple-tab" data-ripple="vortex" title="Quantum Vortex (Rotational Swirl)">
+              <span class="ripple-code">05</span>
+              <span class="ripple-label">VORTEX</span>
+            </button>
+            <button class="ripple-tab" data-ripple="zen_rain" title="Zen Rain (Continuous Ambient Drops)">
+              <span class="ripple-code">06</span>
+              <span class="ripple-label">RAIN</span>
+            </button>
+            <span class="dock-shortcut" title="Press R to cycle dynamics">[KEY: R]</span>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer-nav">
+          <div class="footer-left">
+            <span class="symbol">©</span>
+            <span id="footer-left-text" class="status-badge"><span class="pulse-indicator"></span> 60 FPS LUMINIFEROUS ENGINE</span>
+          </div>
+          <div class="footer-center">
+            <span id="footer-center-text">950 PLATINUM · 39MM · CALIBRE IX</span>
+          </div>
+          <div class="footer-right">
+            <span id="footer-right-text">CELESTIAL OBSERVATORY</span>
+          </div>
+        </footer>
+
+        <!-- Floating Controls Panel Drawer -->
+        <aside id="controls-drawer" class="controls-drawer">
+          <div class="drawer-header">
+            <div class="drawer-title">
+              <span class="title-decor">◆</span>
+              <h3>SURFACE CONFIGURATOR</h3>
+            </div>
+            <button id="close-drawer-btn" class="close-btn" aria-label="Close Settings">✕</button>
+          </div>
+
+          <div class="drawer-body">
+            <!-- Ripple Dynamics Selector in Drawer -->
+            <div class="control-group">
+              <label class="group-label">RIPPLE PROPAGATION ENGINE (KEY: R)</label>
+              <div class="ripple-mode-grid">
+                <button class="ripple-mode-option active" data-ripple="classic">
+                  <span class="mode-badge-code">01</span>
+                  <div class="mode-info">
+                    <strong>Hydrodynamic</strong>
+                    <small>Natural Water Wave PDE</small>
+                  </div>
+                </button>
+                <button class="ripple-mode-option" data-ripple="harmonic">
+                  <span class="mode-badge-code">02</span>
+                  <div class="mode-info">
+                    <strong>Harmonic Echo</strong>
+                    <small>Multi-Ring Bessel Waves</small>
+                  </div>
+                </button>
+                <button class="ripple-mode-option" data-ripple="mercury">
+                  <span class="mode-badge-code">03</span>
+                  <div class="mode-info">
+                    <strong>Viscous Mercury</strong>
+                    <small>Heavy Liquid Metal Craters</small>
+                  </div>
+                </button>
+                <button class="ripple-mode-option" data-ripple="capillary">
+                  <span class="mode-badge-code">04</span>
+                  <div class="mode-info">
+                    <strong>Capillary Shimmer</strong>
+                    <small>Micro-Prismatic Glints</small>
+                  </div>
+                </button>
+                <button class="ripple-mode-option" data-ripple="vortex">
+                  <span class="mode-badge-code">05</span>
+                  <div class="mode-info">
+                    <strong>Quantum Vortex</strong>
+                    <small>Rotational Spiral Wakes</small>
+                  </div>
+                </button>
+                <button class="ripple-mode-option" data-ripple="zen_rain">
+                  <span class="mode-badge-code">06</span>
+                  <div class="mode-info">
+                    <strong>Zen Rain</strong>
+                    <small>Continuous Ambient Drops</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Concept Selection in Drawer -->
+            <div class="control-group">
+              <label class="group-label">EXPERIMENT CONCEPTS (KEYS: 1-5)</label>
+              <div class="theme-grid">
+                <button class="theme-option active" data-concept="aetheris">
+                  <span class="swatch swatch-aetheris"></span>
+                  <div class="option-text">
+                    <strong>AETHERIS</strong>
+                    <small>Platinum Celestial</small>
+                  </div>
+                </button>
+                <button class="theme-option" data-concept="velox">
+                  <span class="swatch swatch-velox"></span>
+                  <div class="option-text">
+                    <strong>VELOX</strong>
+                    <small>Titanium Doppler</small>
+                  </div>
+                </button>
+                <button class="theme-option" data-concept="opaline">
+                  <span class="swatch swatch-opaline"></span>
+                  <div class="option-text">
+                    <strong>OPALINE</strong>
+                    <small>Honey Gold Guilloché</small>
+                  </div>
+                </button>
+                <button class="theme-option" data-concept="thalassa">
+                  <span class="swatch swatch-thalassa"></span>
+                  <div class="option-text">
+                    <strong>THALASSA</strong>
+                    <small>Abyssal Bioluminescent</small>
+                  </div>
+                </button>
+                <button class="theme-option" data-concept="kinesis">
+                  <span class="swatch swatch-kinesis"></span>
+                  <div class="option-text">
+                    <strong>KINESIS</strong>
+                    <small>Liquid Mercury Laser</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Shader Sliders -->
+            <div class="control-group">
+              <div class="slider-header">
+                <label for="slider-iridescence">IRIDESCENCE GAIN</label>
+                <span id="val-iridescence" class="slider-num">1.45</span>
+              </div>
+              <input type="range" id="slider-iridescence" min="0" max="3.5" step="0.05" value="1.45" />
+            </div>
+
+            <div class="control-group">
+              <div class="slider-header">
+                <label for="slider-velocity-sens">VELOCITY SENSITIVITY</label>
+                <span id="val-velocity-sens" class="slider-num">1.60</span>
+              </div>
+              <input type="range" id="slider-velocity-sens" min="0.2" max="3.5" step="0.1" value="1.60" />
+            </div>
+
+            <div class="control-group">
+              <div class="slider-header">
+                <label for="slider-ripple-strength">RIPPLE INTENSITY</label>
+                <span id="val-ripple-strength" class="slider-num">1.25</span>
+              </div>
+              <input type="range" id="slider-ripple-strength" min="0.1" max="3.0" step="0.05" value="1.25" />
+            </div>
+
+            <div class="control-group">
+              <div class="slider-header">
+                <label for="slider-viscosity">VISCOSITY (DAMPING)</label>
+                <span id="val-viscosity" class="slider-num">0.984</span>
+              </div>
+              <input type="range" id="slider-viscosity" min="0.920" max="0.998" step="0.002" value="0.984" />
+            </div>
+
+            <div class="control-group">
+              <div class="slider-header">
+                <label for="slider-chromatic">CHROMATIC ABERRATION</label>
+                <span id="val-chromatic" class="slider-num">0.038</span>
+              </div>
+              <input type="range" id="slider-chromatic" min="0.0" max="0.1" step="0.002" value="0.038" />
+            </div>
+
+            <div class="control-group">
+              <div class="slider-header">
+                <label for="slider-refraction">REFRACTION INDEX</label>
+                <span id="val-refraction" class="slider-num">0.042</span>
+              </div>
+              <input type="range" id="slider-refraction" min="0.0" max="0.12" step="0.005" value="0.042" />
+            </div>
+
+            <!-- Actions -->
+            <div class="control-group">
+              <label class="group-label">INTERACTION PRESETS</label>
+              <div class="action-buttons">
+                <button id="btn-trigger-drop" class="action-btn">
+                  <span>Trigger Rain Burst (Space)</span>
+                </button>
+                <button id="btn-trigger-vortex" class="action-btn">
+                  <span>Vortex Swirl</span>
+                </button>
+                <button id="btn-reset" class="action-btn outline">
+                  <span>Reset Concept Defaults</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Current Concept Summary Card in Drawer -->
+            <div class="info-card">
+              <h4 id="drawer-info-title">ABOUT THE CURRENT CONCEPT</h4>
+              <p id="drawer-info-desc">
+                Aetheris explores the idea of a frictionless, crystalline vacuum surface. Monochromatic in its resting equilibrium, the surface refracts starlight caustics and celestial coordinates into delicate rainbow rings upon the slightest sweep of attention.
+              </p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Concepts Exhibition & Manifestos Modal -->
+        <div id="portfolio-modal" class="modal-backdrop">
+          <div class="modal-content modal-large">
+            <button id="close-modal-btn" class="modal-close">✕</button>
+            <div id="modal-concept-tag" class="modal-tag">QUINTESSENCE // KINETIC OPTICAL MANIFESTO</div>
+            <h2 id="modal-concept-title">THE 5 KINETIC MATERIAL WORLDS</h2>
+            <div class="modal-divider"></div>
+            
+            <p id="modal-concept-lead" class="lead-text">
+              "A surface that only becomes itself when touched. Monochromatic at rest; prismatic in response to kinetic attention."
+            </p>
+
+            <!-- Concept Showcase Cards Grid -->
+            <div class="concept-cards-grid">
+              <div class="concept-card active" data-concept="aetheris">
+                <div class="card-badge">01 · CELESTIAL</div>
+                <h3>AETHERIS</h3>
+                <p>The Luminiferous Medium. Platinum-white crystalline vacuum that ignites into ethereal prismatic rainbows.</p>
+                <button class="select-concept-btn">Launch Aetheris</button>
+              </div>
+
+              <div class="concept-card" data-concept="velox">
+                <div class="card-badge">02 · FLYBACK CHRONO</div>
+                <h3>VELOX</h3>
+                <p>Pure Kinetic Chronometry. Dark titanium surface generating Doppler-shifted directional shockwave streaks.</p>
+                <button class="select-concept-btn">Launch Velox</button>
+              </div>
+
+              <div class="concept-card" data-concept="opaline">
+                <div class="card-badge">03 · HAUTE JOAILLERIE</div>
+                <h3>OPALINE</h3>
+                <p>Liquid Gemology & Guilloché. Honey gold and mother-of-pearl rippling into emerald, amber, and violet diffraction.</p>
+                <button class="select-concept-btn">Launch Opaline</button>
+              </div>
+
+              <div class="concept-card" data-concept="thalassa">
+                <div class="card-badge">04 · MARINE 1000M</div>
+                <h3>THALASSA</h3>
+                <p>Abyssal Deep & Bioluminescence. Obsidian dark waters that burst into vivid neon cyan and aurora wakes.</p>
+                <button class="select-concept-btn">Launch Thalassa</button>
+              </div>
+
+              <div class="concept-card" data-concept="kinesis">
+                <div class="card-badge">05 · DIGITAL ART LAB</div>
+                <h3>KINESIS</h3>
+                <p>Sensory Synesthesia Engine. Pure liquid mercury mirror translating pointer velocity into sharp laser wavelengths (380-750nm).</p>
+                <button class="select-concept-btn">Launch Kinesis</button>
+              </div>
+            </div>
+
+            <div class="modal-specs-row">
+              <div class="spec-item">
+                <span class="spec-label">ACTIVE CALIBRE</span>
+                <span id="modal-spec-calibre" class="spec-val">Calibre IX Astrolabe Orbit</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">ACTIVE CASE</span>
+                <span id="modal-spec-case" class="spec-val">950 Solid Platinum, 39.00mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">PHYSICS PDE</span>
+                <span class="spec-val">2D Wave Equation Ping-Pong FBO</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">KEYBOARD SHORTCUTS</span>
+                <span class="spec-val">1-5 (Concepts), R (Ripple Mode), Space (Rain), S (Sound)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
