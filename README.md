@@ -116,7 +116,7 @@ The optimized production bundle will be generated in the `dist/` directory.
 
 **PolyForm Noncommercial License 1.0.0** © 2026 Ivan Louie.
 
-- ✅ **Permitted**: You are free to view, fork, run, modify, study, and create personal/educational non-commercial projects.
-- 🚫 **Restricted**: Commercial use, monetized distribution, or integration into paid products/services is strictly prohibited.
+- **Permitted**: You are free to view, fork, run, modify, study, and create personal/educational non-commercial projects.
+- **Restricted**: Commercial use, monetized distribution, or integration into paid products/services is strictly prohibited.
 
 See [`LICENSE`](LICENSE) for complete terms.
